@@ -1,2 +1,21 @@
-<h1>Flights#index</h1>
-<p>Find me in app/views/flights/index.html.erb</p>
+<h1>Search Flights</h1>
+
+<%= form_with url: flights_path, method: :get do |form| %>
+  <div>
+    <%= form.label :departure_code, "Departure Airport" %>
+    <%= form.select(:departure_code, @airport_options, prompt: "---Please Select---") %>
+  </div>
+  <div>
+    <%= form.label :arrival_code, "Arrival Airport" %>
+    <%= form.select(:arrival_code, @airport_options, prompt: "---Please Select---") %>
+  </div>
+  <div>
+    <%= form.label :date %>
+    <%= form.select(:date, @flight_date_options, prompt: "---Please Select---")%>
+  </div>
+  <div>
+    <%= form.label :num_tickets %>
+    <%= form.select(:num_tickets, (1..4), prompt: "---Please Select---", required: true) %>
+  </div>
+  <%= form.submit "Search Flights", name: nil %>
+<% end %>
