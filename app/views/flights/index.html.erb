@@ -19,3 +19,25 @@
   </div>
   <%= form.submit "Search Flights", name: nil %>
 <% end %>
+
+<% if @results %>
+  <h3>Search Results</h3>
+  
+  <% if @results.empty? %>
+    <p>No available flights</p>
+
+  <% else %>
+    <%= form_with do |form| %>
+      <% @results.each do |flight| %>
+        <div>
+          <%= form.radio_button :flight, flight.id %>
+          <%= form.label "flight_#{flight.id}" do %>
+            <%= flight.start_datetime.strftime("%Y-%m-%d %H:%m") %>
+            <%= flight.departure_airport.airport_code %> to <%= flight.arrival_airport.airport_code %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= form.submit "Book Flight"%>
+    <% end %>
+  <% end %>
+<% end %>

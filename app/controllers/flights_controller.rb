@@ -23,6 +23,6 @@ class FlightsController < ApplicationController
       results = results.where("DATE(start_datetime) = ?", params[:date])
     end
 
-    results
+    results.order(:start_datetime)
   end
 end
