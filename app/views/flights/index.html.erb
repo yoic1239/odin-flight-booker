@@ -28,6 +28,7 @@
 
   <% else %>
     <%= form_with do |form| %>
+      <% form.hidden_field :num_tickets, value: params[:num_tickets] %>
       <% @results.each do |flight| %>
         <div>
           <%= form.radio_button :flight, flight.id %>
