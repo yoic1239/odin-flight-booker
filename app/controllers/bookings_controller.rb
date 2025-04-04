@@ -18,6 +18,12 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+    @flight = @booking.flight
+    @passengers = @booking.passengers
+  end
+
   private
 
   def booking_params
