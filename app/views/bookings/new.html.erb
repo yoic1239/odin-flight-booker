@@ -10,4 +10,23 @@
     <p>Arrival Airport: <%= @flight.arrival_airport.airport_code %></p>
     <p>Number of Passengers: <%= @num_tickets %></p>
   </div>
+
+  <div>
+    <h2>Passenger Information</h2>
+    <%= form.fields_for @booking.passengers.build do |sub_form| %>
+      <% @num_tickets.times do |num| %>
+        <h3>Passenger <%= num + 1 %></h3>
+        <div>
+          <%= sub_form.label :name %>
+          <%= sub_form.text_field :name %>
+        </div>
+        <div>
+          <%= sub_form.label :email %>
+          <%= sub_form.email_field :email %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= form.submit %>
 <% end %>
