@@ -16,6 +16,18 @@
 
   <div>
     <h2>Passenger Information</h2>
+    <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2>Error(s) prohibited this booking from being created:</h2>
+
+      <ul>
+        <% @booking.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <% @booking.passengers.each_with_index do |passenger, index| %>
       <h3>Passenger <%= index + 1 %></h3>
       <%= form.fields_for :passengers, passenger do |sub_form| %>  
