@@ -9,13 +9,16 @@
     <p>Departure Airport: <%= @flight.departure_airport.airport_code %></p>
     <p>Arrival Airport: <%= @flight.arrival_airport.airport_code %></p>
     <p>Number of Passengers: <%= @num_tickets %></p>
+
+    <%= form.hidden_field :flight_id, value: @flight.id %>
+    <%= form.hidden_field :num_tickets, value: @num_tickets %>
   </div>
 
   <div>
     <h2>Passenger Information</h2>
-    <%= form.fields_for @booking.passengers.build do |sub_form| %>
-      <% @num_tickets.times do |num| %>
-        <h3>Passenger <%= num + 1 %></h3>
+    <% @booking.passengers.each_with_index do |passenger, index| %>
+      <h3>Passenger <%= index + 1 %></h3>
+      <%= form.fields_for :passengers, passenger do |sub_form| %>  
         <div>
           <%= sub_form.label :name %>
           <%= sub_form.text_field :name %>
