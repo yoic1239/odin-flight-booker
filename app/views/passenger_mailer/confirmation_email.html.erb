@@ -1,0 +1,14 @@
+<p>Dear <%= @passenger.name %>, </p>
+
+<p>Thank you for booking your flight with Flight Booker.</p>
+
+<h2>Flight Information</h2>
+<p>Date: <%= @flight.start_datetime.strftime("%Y %b %d") %></p>
+<p>Departure Time: <%= @flight.start_datetime.strftime("%H:%m") %></p>
+<p>Departure Airport: <%= @flight.departure_airport.airport_code %></p>
+<p>Arrival Airport: <%= @flight.arrival_airport.airport_code %></p>
+<p>Passenger(s): <%= @passengers.map(&:name).join(', ') %> </p>
+
+<p><%= link_to 'Click here', @booking %> to view your booking details.</p>
+
+<p>Flight Booker</p>
